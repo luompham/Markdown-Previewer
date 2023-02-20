@@ -1,3 +1,8 @@
+marked.setOptions({
+    breaks: true
+})
+
+
 function ResizeIcon(props) {
 
 
@@ -13,6 +18,50 @@ function ResizeIcon(props) {
 
 
 
+const initialState = `
+# Heading 1  
+
+## Heading 2  
+
+[example link](http://example.com/)
+
+<span style='color:red'>Inline code</span>
+<span style='color:red'>Inline code</span>
+<span style='color:red'>Inline code</span>
+
+Block codes:  
+
+\`\`\`
+function () {
+    return a + b
+}
+\`\`\`
+
+Inline codes:
+
+\`\`\`
+const logger = () => {
+    return console.log('I love coding')
+};
+logger();
+\`\`\`
+
+- List items 1.  
+- List items 2.  
+
+> This is blockquoted text.  
+
+
+This is very heavily **emphasized** __text__.  
+
+\` let a = 3;  \`
+\` let b = 4;   \`
+\` let c = a + b;  \`
+
+![freeCodeCamp Logo](https://cdn.freecodecamp.org/testable-projects-fcc/images/fcc_secondary.svg)
+
+`
+
 
 
 class App extends React.Component {
@@ -21,9 +70,11 @@ class App extends React.Component {
         super(props)
 
         this.state = {
-            input: `# Heading 1  \n## Heading 2  \n\n[example link](http://example.com/)\n    \n<span style='color:red'>Inline code</span>    \n\nBlock code.  \n\n- List items 1.  \n- List items 2.  \n\n> This is blockquoted text.  \n\nThis is very heavily **emphasized** __text__.  \n\n![freeCodeCamp Logo](https://cdn.freecodecamp.org/testable-projects-fcc/images/fcc_secondary.svg)
+            // input: `# Heading 1  \n## Heading 2  \n\n[example link](http://example.com/)\n    \n<span style='color:red'>Inline code</span>    \n\nBlock code.  \n\n- List items 1.  \n- List items 2.  \n\n> This is blockquoted text.  \n\nThis is very heavily **emphasized** __text__.  \n\n \`\`\`  \nlet a = 3;  \nlet b = 4;  \nlet c = a + b;  \n\n\`\`\`  \n\n![freeCodeCamp Logo](https://cdn.freecodecamp.org/testable-projects-fcc/images/fcc_secondary.svg)
 
-            `,
+            // `,
+
+            input: initialState,
             isResize: false,
             resizePreview: false
         }
@@ -68,6 +119,8 @@ class App extends React.Component {
 
 
     render() {
+
+        // const markdown = marked(this.state.input)
 
         const input = marked.parse(this.state.input)
 
